@@ -1,8 +1,12 @@
-
+#!/bin/env ruby
+# encoding: utf-8
 Quando /^começo um novo jogo$/ do
-	game = Game.new
-	game.start
+	steps %{
+	  When I run `forca` interactively
+    }
 end
-Então /^vejo na tela:$/ do |string|
-	pending
+Então /^vejo na tela:$/ do |text|
+	steps %{
+Then the stdout should contain "#{text}"
+}
 end
